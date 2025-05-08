@@ -3,28 +3,7 @@ import random
 import string
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
-OUTPUT_DIR = "captcha_dataset"
-TRAIN_DIR = os.path.join(OUTPUT_DIR, "train")
-VAL_DIR = os.path.join(OUTPUT_DIR, "val")
-TEST_DIR = os.path.join(OUTPUT_DIR, "test")
-LABELS_FILE_TRAIN = os.path.join(TRAIN_DIR, "labels.csv")
-LABELS_FILE_VAL = os.path.join(VAL_DIR, "labels.csv")
-LABELS_FILE_TEST = os.path.join(TEST_DIR, "labels.csv")
-
-FONTS_DIR = "fonts"
-
-IMAGE_WIDTH = 200 #image size
-IMAGE_HEIGHT = 80
-TEXT_LENGTH_MIN = 4
-TEXT_LENGTH_MAX = 6
-FONT_SIZE_MIN = 28
-FONT_SIZE_MAX = 38
-
-CHARACTERS = string.ascii_letters + string.digits #maj and min letters dans digits inside the Captcha
-
-NUM_TRAIN_IMAGES = 1000 # number of image for training set
-NUM_TEST_IMAGES = 200
-NUM_VAL_IMAGES = NUM_TEST_IMAGES
+CHARACTERS = string.ascii_letters + string.digits
 
 def get_random_font(font_directory):
   """Get a random font path from, a specific directory"""
@@ -63,7 +42,7 @@ def generate_random_text(length_min, length_max):
   return "".join(random.choices(CHARACTERS, k=length))
 
 
-def create_CAPTCHA(image_width, image_height, font_size_min = FONT_SIZE_MIN, font_size_max = FONT_SIZE_MAX, text_length_min = TEXT_LENGTH_MIN, text_length_max = TEXT_LENGTH_MAX, font_directory = FONTS_DIR):
+def create_CAPTCHA(image_width, image_height, font_size_min, font_size_max, text_length_min, text_length_max, font_directory):
   """Create a CAPTCHA and return a PIL image and the text assiociated"""
 
   captcha_text = generate_random_text(text_length_min, text_length_max) #text_generation
