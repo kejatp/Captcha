@@ -1,3 +1,7 @@
 #font files
 *.ttf
 *.otf
+
+#cache file
+__pycache__
+__pycache__/
